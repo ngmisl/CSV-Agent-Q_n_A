@@ -18,6 +18,11 @@ st.sidebar.markdown(
     """
 )
 
+st.sidebar.title("Our Product")
+st.sidebar.markdown(
+    "[The Ultimate 5 ChatGPT Prompts: Simplify Your AI Experience](https://ngmi.gumroad.com/l/nobsprompts)"
+)
+
 if api_key:
     os.environ["OPENAI_API_KEY"] = api_key
     st.title("CSV Agent Interaction")
@@ -25,7 +30,9 @@ if api_key:
     if uploaded_file:
         st.write("CSV file uploaded successfully!")
 
-        agent = create_csv_agent(OpenAI(temperature=0), uploaded_file, verbose=True)
+        agent = create_csv_agent(
+            OpenAI(temperature=0, client=any), uploaded_file, verbose=True
+        )
 
         # Initialize the chat history in the session_state if it doesn't exist
         if "chat_history" not in st.session_state:
